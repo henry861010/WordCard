@@ -1,0 +1,131 @@
+require:
+需要的功能：
+
+1. 紀錄我的單字，其中需要：
+
+ - 日期（年月日），需要可以用手點日期的方式
+ - 單字名+單字翻譯+例句
+ - 動詞 名詞  and 用戶自訂種類(工程用單字、商業用單字)
+ - 閱讀次數(每次點開或查詢過就算一次?)
+
+2. 關掉網站後資料就會自動消失，不需要留紀錄  ???
+
+3. 每類單字的數量
+
+------------------------------
+1. [bject]WordCard
+	atr: (1)word (2)date (3)chinese (4)example (5)type-1(adj/v/n) (6)type-2(userDefine) (7)readNumber
+2. [object]function   
+	atr: (1)functionName (2)functionDiscription (3)functionHttp 
+
+declare variable:
+1. [state]functionlist
+	array[function...]
+		*need to be initialize in the begin to that the user know which functions can be used  => useEffect({import from .json},[])
+		*can import from the setting.json (some parameter to be setted)
+2. [state]typelist2   //for type-2
+	array[string...]
+		*need to be initialize in the begin  => useEffect({import for .json},[typelist2])
+		*can import from the personal.json (some parameter to be setted)
+3. [state]wordlist
+	array[WordCard...]
+		*need to be initialize in the begin  => useEffect({import from DB},[])
+		*can import from the database server
+4. [state]showWordlist
+	array[wordCard]
+		*need to be initialize in the begin  => from [wordlist]
+		* => useEffect(setShowWordlist(wordlist),wordlist)
+
+
+
+
+1. [component - home]
+	discription:
+		1. [component - top] 
+			simple discription: show the "function"(addWord, wordTesting, home) 
+		2. main
+			(1)[component - selectClass] can select which the class i want to show (default is all)
+			(2)[component - searchWord] can select the word
+			(3)show important information of the word of all the selected words in the page   ~need the state variable name "showWord"
+			(4)can link to the [component - showWord]'s page after click the word
+
+2. [component - selectType]
+	discription:
+		1. use the <input type="checkbox" name=className>
+	
+	flow:	1. declare [*state - selectTypes], using the [typelist2]
+		2. get the [state - selectTypes] from the input
+		3. use [state - selectTypes] to flite [state - wordlist] and set the result to the [state - showWordlist]
+
+	state:	1. *[state - selectTypes]   	local
+		2. [state - typelist2]			global	
+		3. [state - wordlist]		global
+		4. [state - showWordlist]	global
+
+3. [component - searchWord]
+	discription: 
+		1. use the <input type="text" name=className onChang={...}>
+
+	flow:	1. get the [*state - searchWord] from the input
+		2. use [state - searchWord] to flite [state - wordlist] and set the result to the [state - showWordlist]
+
+	state:	1. *[state - searchWord]	local
+		2. [state - wordlist]		global
+		3. [state - showWordlist]	global
+
+4. [component - showWord]
+	discription:
+		1. [component - top]
+		2. show the information of the word in the [state - wordlist] ~get id from the "const { id } = useParams();"
+		3. <button> ->[component - modifyWord]
+		4. <button> ->[component - deleteWord]  ~is it necessary to use component? i just want to have second check after the click
+		*after reading the word, i need to add the readNumber of the word, how to do that? 
+
+	state:	1. [state - wordlist]		global
+
+
+5. [component - modifyWord]
+	discription:
+		1. [component - top]
+		2. modify:
+		     <form>
+			//the default value is the atribbute information in the word object
+			<input>{word}  text
+			<input>{date}  datatime
+			<input>{diecription}  text
+			<input>{example} text
+			<input>{type-1(adj/v/n)} selectbar
+			<input>{type-2(userDefine)} selectbar
+		     </form>
+	
+	state:	1. [state - wordlist]		global 
+
+6. [component - addWord]
+	discription:
+		1. [component - top]
+		2. modify:
+		     <form>
+			//the default value is nothing
+			<input>{word}  text
+			<input>{date}  datatime
+			<input>{diecription}  text
+			<input>{example} text
+			<input>{type-1(adj/v/n)} selectbar
+			<input>{type-2(userDefine)} selectbar
+		     </form>
+	
+	state:	1. [state - wordlist]		global 
+
+7. [component - top]   ~fixed in each page
+	discription:
+		1. show all the "function"(addWord, wordTesting, home) 
+		2. <button> ->[function http] (multiple depend on the number of the functions)
+		3. <button> ->[component - set]
+	
+	state:	1. *[state - functionlist]	local 
+
+8. [component - set]
+	discription:
+		1. <p>setting!</p>
+		2. [component - setType] ~using [state]typelist2
+
