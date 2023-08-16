@@ -1,0 +1,4 @@
+1. npx create-react-app [project_name]   //project_name=WordCard
+2. install extension "es7 react/redux... snippets" in VScode
+3. coding...
+4. npm start
