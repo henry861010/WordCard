@@ -19,19 +19,19 @@ require:
 	atr: (1)functionName (2)functionDiscription (3)functionHttp 
 
 declare variable:
-1. [state]functionlist
+1. [state]functionlist  local_in_[component - top]
 	array[function...]
 		*need to be initialize in the begin to that the user know which functions can be used  => useEffect({import from .json},[])
 		*can import from the setting.json (some parameter to be setted)
-2. [state]typelist2   //for type-2
+2. [state]typelist2   	global
 	array[string...]
 		*need to be initialize in the begin  => useEffect({import for .json},[typelist2])
 		*can import from the personal.json (some parameter to be setted)
-3. [state]wordlist
+3. [state]wordlist	global
 	array[WordCard...]
 		*need to be initialize in the begin  => useEffect({import from DB},[])
 		*can import from the database server
-4. [state]showWordlist
+4. [state]showWordlist	global
 	array[wordCard]
 		*need to be initialize in the begin  => from [wordlist]
 		* => useEffect(setShowWordlist(wordlist),wordlist)
@@ -44,10 +44,11 @@ declare variable:
 		1. [component - top] 
 			simple discription: show the "function"(addWord, wordTesting, home) 
 		2. main
-			(1)[component - selectClass] can select which the class i want to show (default is all)
-			(2)[component - searchWord] can select the word
-			(3)show important information of the word of all the selected words in the page   ~need the state variable name "showWord"
-			(4)can link to the [component - showWord]'s page after click the word
+			(1)[component - filter]
+				(1)[component - selectClass] can select which the class i want to show (default is all)
+				(2)[component - searchWord] can select the word
+			(2)show important information of the word of all the selected words in the page   ~need the state variable name "showWord"
+			(3)can link to the [component - showWord]'s page after click the word
 
 2. [component - selectType]
 	discription:
@@ -58,7 +59,7 @@ declare variable:
 		3. use [state - selectTypes] to flite [state - wordlist] and set the result to the [state - showWordlist]
 
 	state:	1. *[state - selectTypes]   	local
-		2. [state - typelist2]			global	
+		2. [state - typelist2]		global	
 		3. [state - wordlist]		global
 		4. [state - showWordlist]	global
 
