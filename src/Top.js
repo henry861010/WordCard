@@ -1,8 +1,10 @@
 const Top = () => {
   return (
-    <header className="Top">
-      <p>top....</p>
-    </header>
+    <>
+      <p className="Top">
+        top...
+      </p>
+    </>  
   );
 }
 
