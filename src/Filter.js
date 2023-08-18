@@ -11,15 +11,21 @@ const Filter = ({ wordlist, typelist2, typelist1 }) => {
     let temp = wordlist.filter((item)=>{
       var ifSelected = false;
       item.type1.map((type1,index1)=>{
-          ifSelected = !item.name.includes(searchWord)?false:(ifSelected?true:(!selectedType1[index1]?false:(type1?true:false))); 
+        ifSelected = !(item.name.toLowerCase()).includes(searchWord.toLowerCase())?false:(ifSelected?true:(!selectedType1[index1]?false:(type1?true:false)));
       });
       item.type2.map((type2,index2)=>{
-          ifSelected = !item.name.includes(searchWord)?false:(ifSelected?true:(!selectedType2[index2]?false:(type2?true:false)));
+        ifSelected = !(item.name.toLowerCase()).includes(searchWord.toLowerCase())?false:(ifSelected?true:(!selectedType2[index2]?false:(type2?true:false)));
       });
+
       return ifSelected;
     });
     SetOutput(temp);
   },[ selectedType2, selectedType1, searchWord, wordlist]);
+
+  useEffect(()=>{
+    setSelectedType1(typelist1.map(item=>true));
+    setSelectedType2(typelist2.map(item=>true));
+  },[typelist1,typelist2]);
 
   const updateShow_type1 =(e)=>{
     let type = e.target.value;
@@ -63,7 +69,7 @@ const Filter = ({ wordlist, typelist2, typelist1 }) => {
               <input
                 value={item.name}
                 type="checkbox"
-                defaultChecked={selectedType1[index]}
+                checked={selectedType1[index]}
                 onClick={updateShow_type1}
               />
             </li>
@@ -78,7 +84,7 @@ const Filter = ({ wordlist, typelist2, typelist1 }) => {
               <input
                 value={item.name}
                 type="checkbox"
-                defaultChecked={selectedType2[index]}
+                checked={selectedType2[index]}
                 onClick={updateShow_type2}
               />
             </li>

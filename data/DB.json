@@ -1,0 +1,192 @@
+{
+  "wordlist": [
+    {
+      "id": 0,
+      "name": "apple",
+      "description": "*add description",
+      "example": "*add example",
+      "type1": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "type2": [
+        true,
+        false,
+        true,
+        false
+      ]
+    },
+    {
+      "id": 1,
+      "name": "banana",
+      "description": "*add description",
+      "example": "*add example",
+      "type1": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "type2": [
+        true,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "id": 2,
+      "name": "canada",
+      "description": "*add description",
+      "example": "*add example",
+      "type1": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "type2": [
+        true,
+        false,
+        true,
+        false
+      ]
+    },
+    {
+      "id": 3,
+      "name": "docker",
+      "description": "*add description",
+      "example": "*add example",
+      "type1": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "type2": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "id": 4,
+      "name": "egg",
+      "description": "*add description",
+      "example": "*add example",
+      "type1": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "type2": [
+        false,
+        false,
+        true,
+        false
+      ]
+    },
+    {
+      "id": 5,
+      "name": "fish",
+      "description": "*add description",
+      "example": "*add example",
+      "type1": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "type2": [
+        false,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "id": 6,
+      "name": "gg",
+      "description": "*add description",
+      "example": "*add example",
+      "type1": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "type2": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "id": 7,
+      "name": "hh",
+      "description": "*add description",
+      "example": "*add example",
+      "type1": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "type2": [
+        true,
+        true,
+        true,
+        false
+      ]
+    }
+  ],
+  "typelist1": [
+    {
+      "id": 0,
+      "name": "n",
+      "description": "xxxxxxx"
+    },
+    {
+      "id": 1,
+      "name": "v",
+      "description": "xxxxxxx"
+    },
+    {
+      "id": 2,
+      "name": "adj",
+      "description": "xxxxxxx"
+    },
+    {
+      "id": 3,
+      "name": "adv",
+      "description": "xxxxxxx"
+    }
+  ],
+  "typelist2": [
+    {
+      "id": 0,
+      "name": "aa",
+      "description": "xxxxxxx"
+    },
+    {
+      "id": 1,
+      "name": "bb",
+      "description": "xxxxxxx"
+    },
+    {
+      "id": 2,
+      "name": "cc",
+      "description": "xxxxxxx"
+    },
+    {
+      "id": 3,
+      "name": "dd",
+      "description": "xxxxxxx"
+    }
+  ]
+}

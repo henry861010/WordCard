@@ -1,5 +1,4 @@
 import './App.css';
-import React from 'react';
 import Header from './Header';
 import Top from './Top';
 import Home from './Home';
@@ -8,31 +7,45 @@ import ModifyWord from './ModifyWord';
 import ShowWord from './ShowWord';
 import AddWord from './AddWord';
 import Missing from './Missing';
-import { Route, Routes} from 'react-router-dom';
-import { useState} from 'react';
+import { Route , Routes } from 'react-router-dom';
+import React,{ useState , useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [wordlist,setWordlist] = useState([]);
+  const [typelist1,setTypelist1] = useState([]);
+  const [typelist2,setTypelist2] = useState([]);
 
-  const [wordlist,setWordlist] = useState([
-    {id:0 ,name: "apple"    ,description: "xxxxxxx", example: "i's Henry",     type1: [true, false, false, false], type2: [true, false, true, false]},
-    {id:1 ,name: "banana"   ,description: "xxxxxxx", example: "i's Henry",     type1: [false, false, false, false], type2: [false, false, false, true]},
-    {id:2 ,name: "champion" ,description: "xxxxxxx", example: "i's Henry",     type1: [false, false, false, false], type2: [true, false, false, false]},
-    {id:3 ,name: "do"       ,description: "xxxxxxx", example: "i's Henry",     type1: [false, true, false, false], type2: [false, false, true, false]},
-    {id:4 ,name: "surf"     ,description: "xxxxxxx", example: "i's Henry",     type1: [false, true, false, false], type2: [false, true, false, false]},
-    {id:5 ,name: "surfboard",description: "xxxxxxx", example: "i's Henry",     type1: [false, true, false, false], type2: [true, false, false, false]},
-  ]);
-  const [typelist2,setTypelist1] = useState([
-    {id:0 ,name: "aa" ,description: "xxxxxxx"},
-    {id:1 ,name: "bb" ,description: "xxxxxxx"},
-    {id:2 ,name: "cc" ,description: "xxxxxxx"},
-    {id:3 ,name: "dd" ,description: "xxxxxxx"},
-  ]);
-  const [typelist1,setTypelist2] = useState([
-    {id:0 ,name: "n" ,description: "xxxxxxx"},
-    {id:1 ,name: "v" ,description: "xxxxxxx"},
-    {id:2 ,name: "adj" ,description: "xxxxxxx"},
-    {id:3 ,name: "adv" ,description: "xxxxxxx"},
-  ]);
+  const api = axios.create({
+    baseURL: 'http://localhost:3500'
+  });
+  
+  useEffect(()=>{
+    const fetchDate = async () =>{
+      try{
+        const response0 = await api.get('/wordlist');
+        if(response0) setWordlist(response0.data);
+        else console.log("response is empty");
+
+        const response1 = await api.get('/typelist1');
+        if(response1) setTypelist1(response1.data);
+        else console.log("response is empty");
+
+        const response2 = await api.get('/typelist2');
+        if(response2) setTypelist2(response2.data);
+        else console.log("response is empty");
+
+      } catch(err){
+        if(err.response){
+          console.log("[Error0-0]: "+err.message.data)
+          console.log("[Error0-1]: "+err.message.status)
+          console.log("[Error0-2]: "+err.message.headers)
+        }
+        else console.log("[Error1]: "+err.message)
+      }
+    }
+    fetchDate();
+  },[]);
 
   return(
     <div className="App">

@@ -1,17 +1,27 @@
-import { useParams } from 'react-router-dom';
 import { useState , useEffect} from 'react';
 import  Filter  from './Filter';
+import axios from 'axios';
 
 const AddWord = ({wordlist, setWordlist,typelist2,typelist1}) => {
 
     const [ newName , setNewName ] = useState( "" );
     const [ newDescription , setNewDescription ] = useState( "" );
     const [ newExample , setNewExample ] = useState( "" );
-    const [ newType1 , setNewType1 ] = useState( Array(typelist1.length).fill(false));
-    const [ newType2 , setNewType2 ] = useState( Array(typelist2.length).fill(false));
+    const [ newType1 , setNewType1 ] = useState([]);
+    const [ newType2 , setNewType2 ] = useState([]);
+
+    useEffect(()=>{
+      setNewType1( Array(typelist1.length).fill(false));
+      setNewType2( Array(typelist2.length).fill(false));
+    },[typelist2,typelist1]);
+    // must to use the dependence of the typelist2 and typelist1, because that typelist2 and typelist1 setted by 
+    //remote data base,and they are empty in the initial. so if at the first load with dependence [] , the value is empty
+    //to avoid the issue, set the dependence of the typelist2 and typelist1 and when they change, two array can be update immediately
+    //[if the typelist2 and typelist1 update at the same time?]
+
 
     const handleSubmit = () =>{
-        console.log("modify");
+        console.log("mad !!!");
         if(wordlist.some((item)=>(item.name==newName))){console.log("same word"); setNewName("");}
         else{  
           const temp = {
@@ -22,7 +32,16 @@ const AddWord = ({wordlist, setWordlist,typelist2,typelist1}) => {
               type1: newType1,
               type2: newType2,
           }
+
+          const api = axios.create({baseURL: 'http://localhost:3500'});
+          api.post('/wordlist', temp);
           setWordlist([...wordlist,temp]);
+
+          setNewName("");
+          setNewDescription("");
+          setNewExample("");
+          setNewType1(Array(typelist1.length).fill(false));
+          setNewType2(Array(typelist2.length).fill(false));
         }
     }
 
@@ -54,7 +73,7 @@ const AddWord = ({wordlist, setWordlist,typelist2,typelist1}) => {
                       <label>{type.name}</label>
                       <input
                           type='checkbox'
-                          defaultChecked={false}
+                          checked={newType1[index]}
                           onClick={(e)=>setNewType1(  
                             newType1.map((item,i)=>i===index?e.target.checked:item)
                           )}
@@ -68,7 +87,7 @@ const AddWord = ({wordlist, setWordlist,typelist2,typelist1}) => {
                       <label>{type.name}</label>
                       <input
                           type='checkbox'
-                          defaultChecked={false}
+                          checked={newType2[index]}
                           onClick={(e)=>setNewType2(  
                             newType2.map((item,i)=>i===index?e.target.checked:item)
                           )}
