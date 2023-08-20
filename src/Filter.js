@@ -9,15 +9,16 @@ const Filter = ({ wordlist, typelist2, typelist1 }) => {
 
   useEffect(()=>{
     let temp = wordlist.filter((item)=>{
-      var ifSelected = false;
+      let ifSelected1 = false;
+      let ifSelected2 = false;
+      const ifInclude = (item.name.toLowerCase()).includes(searchWord.toLowerCase());
       item.type1.map((type1,index1)=>{
-        ifSelected = !(item.name.toLowerCase()).includes(searchWord.toLowerCase())?false:(ifSelected?true:(!selectedType1[index1]?false:(type1?true:false)));
+        ifSelected1 = ifSelected1||(selectedType1[index1]&&type1);
       });
       item.type2.map((type2,index2)=>{
-        ifSelected = !(item.name.toLowerCase()).includes(searchWord.toLowerCase())?false:(ifSelected?true:(!selectedType2[index2]?false:(type2?true:false)));
+        ifSelected2 = ifSelected2||(selectedType2[index2]&&type2);
       });
-
-      return ifSelected;
+      return (ifSelected2 || ifSelected1)&&ifInclude;
     });
     SetOutput(temp);
   },[ selectedType2, selectedType1, searchWord, wordlist]);

@@ -21,6 +21,7 @@ const AddWord = ({wordlist, setWordlist,typelist2,typelist1}) => {
 
 
     const handleSubmit = () =>{
+      const a = async () => {
         console.log("mad !!!");
         if(wordlist.some((item)=>(item.name==newName))){console.log("same word"); setNewName("");}
         else{  
@@ -32,17 +33,22 @@ const AddWord = ({wordlist, setWordlist,typelist2,typelist1}) => {
               type1: newType1,
               type2: newType2,
           }
-
-          const api = axios.create({baseURL: 'http://localhost:3500'});
-          api.post('/wordlist', temp);
-          setWordlist([...wordlist,temp]);
-
           setNewName("");
           setNewDescription("");
           setNewExample("");
           setNewType1(Array(typelist1.length).fill(false));
           setNewType2(Array(typelist2.length).fill(false));
+          setWordlist([...wordlist,temp]);
+          
+          try{
+            const api = axios.create({baseURL: 'http://localhost:3500'});
+            await api.post('/wordlist', temp);
+          }catch(err){
+            console.log("error when sent the add request to DB!");
+          }
         }
+      }
+      a();
     }
 
     return (

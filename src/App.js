@@ -19,31 +19,33 @@ function App() {
   const api = axios.create({
     baseURL: 'http://localhost:3500'
   });
+
+  const fetchDate = async () =>{
+    try{
+  console.log("update from the database");
+      const response1 = await api.get('/typelist1');
+      if(response1) setTypelist1(response1.data);
+      else console.log("response is empty");
+
+      const response0 = await api.get('/wordlist');
+      if(response0) setWordlist(response0.data);
+      else console.log("response is empty");
+
+      const response2 = await api.get('/typelist2');
+      if(response2) setTypelist2(response2.data);
+      else console.log("response is empty");
+
+    } catch(err){
+      if(err.response){
+        console.log("[Error0-0]: "+err.message.data)
+        console.log("[Error0-1]: "+err.message.status)
+        console.log("[Error0-2]: "+err.message.headers)
+      }
+      else console.log("[Error1]: "+err.message)
+    }
+  }
   
   useEffect(()=>{
-    const fetchDate = async () =>{
-      try{
-        const response0 = await api.get('/wordlist');
-        if(response0) setWordlist(response0.data);
-        else console.log("response is empty");
-
-        const response1 = await api.get('/typelist1');
-        if(response1) setTypelist1(response1.data);
-        else console.log("response is empty");
-
-        const response2 = await api.get('/typelist2');
-        if(response2) setTypelist2(response2.data);
-        else console.log("response is empty");
-
-      } catch(err){
-        if(err.response){
-          console.log("[Error0-0]: "+err.message.data)
-          console.log("[Error0-1]: "+err.message.status)
-          console.log("[Error0-2]: "+err.message.headers)
-        }
-        else console.log("[Error1]: "+err.message)
-      }
-    }
     fetchDate();
   },[]);
 

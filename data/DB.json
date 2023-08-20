@@ -21,18 +21,18 @@
     {
       "id": 1,
       "name": "banana",
-      "description": "*add description",
-      "example": "*add example",
+      "description": "*add description!!",
+      "example": "*add example!!",
       "type1": [
         true,
-        false,
+        true,
         false,
         false
       ],
       "type2": [
         true,
         false,
-        false,
+        true,
         false
       ]
     },
@@ -111,8 +111,8 @@
     {
       "id": 6,
       "name": "gg",
-      "description": "*add description",
-      "example": "*add example",
+      "description": "*add description!!",
+      "example": "*add example!!!",
       "type1": [
         true,
         true,
@@ -121,9 +121,9 @@
       ],
       "type2": [
         false,
-        false,
-        false,
-        false
+        true,
+        true,
+        true
       ]
     },
     {
@@ -140,6 +140,96 @@
       "type2": [
         true,
         true,
+        true,
+        false
+      ]
+    },
+    {
+      "id": 8,
+      "name": "rtynbtr",
+      "description": "rebher5bh",
+      "example": "erhgb4etr",
+      "type1": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "type2": [
+        true,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "id": 9,
+      "name": "wefew",
+      "description": "wefcv",
+      "example": "wefcews",
+      "type1": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "type2": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "id": 10,
+      "name": "mmmm",
+      "description": "mmmm",
+      "example": "mmm",
+      "type1": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "type2": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "id": 11,
+      "name": "b4r3bnh",
+      "description": "5re4gb5r",
+      "example": "regvre5",
+      "type1": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "type2": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "id": 12,
+      "name": "bigg",
+      "description": "aaa",
+      "example": "vvvv",
+      "type1": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "type2": [
+        false,
+        false,
         true,
         false
       ]
@@ -170,7 +260,7 @@
   "typelist2": [
     {
       "id": 0,
-      "name": "aa",
+      "name": "all",
       "description": "xxxxxxx"
     },
     {
